@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SpringCommerce</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/035dcaec22.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div th:include="usuario/template_user.html::header"></div>
+<div class="container">
+    <h1 class="mt-2">Crear Producto</h1>
+    <form class="row g-3 needs-validation mt-2" novalidate th:action="@{/productos/save}" method="post" enctype="multipart/form-data">
+        <div class="col-md-4">
+            <div class="form-outline">
+                <label  class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre"  required placeholder="Nombre"/>
+            </div>
+        </div>
+
+        <div class="mb-2 pb-1">
+            <div class="form-outline">
+                <label  class="form-label">Descripcion</label>
+                <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Required example textarea" required></textarea>
+
+                <div class="invalid-feedback">Ingrese la descripción del producto</div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-outline">
+                <label  class="form-label">Cantidad</label>
+                <input type="text" class="form-control" id="cantidad"
+                       name="cantidad"  required />
+
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-outline">
+                <label  class="form-label">Precio</label>
+                <input type="text" class="form-control" required id="precio" name="precio" />
+
+                <div class="invalid-feedback">Precio</div>
+            </div>
+        </div>
+
+
+
+        <div class="mb-3">
+            <input type="file" class="form-control" aria-label="file example" id="img" name="img" />
+            <div class="invalid-feedback">Ningún archivo cargado</div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-outline-primary me-5" type="submit">Cargar Producto</button>
+        </div>
+    </form>
+
+</div>
+<div th:include="usuario/template_user.html::footer"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

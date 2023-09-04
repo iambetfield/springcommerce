@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SpringCommerce</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/035dcaec22.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div th:include="admin/template_admin.html::header"></div>
+
+<!-- Products -->
+<section class="container">
+    <h2>Ordenes</h2>
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+        <tr>
+            <th>Nro Orden</th>
+            <th>Fecha</th>
+            <th>Valor</th>
+            <th>Acción</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="orden:${ordenes}">
+
+            <td th:text="${orden.numero}"></td>
+            <td th:text="${orden.fechaCreacion}"></td>
+            <td th:text="${orden.total}"></td>
+            <td><a class="btn btn-success" th:href="@{/admin/detalle/__${orden.id}__}">Ver Detalle</a></td>
+
+
+        </tr>
+        </tbody>
+    </table>
+</section>
+<!-- Products -->
+<div th:include="admin/template_admin.html::footer"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

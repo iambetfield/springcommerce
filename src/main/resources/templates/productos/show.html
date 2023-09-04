@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SpringCommerce</title>
+    <script src="https://kit.fontawesome.com/035dcaec22.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/035dcaec22.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div th:include="usuario/template_user.html::header"></div>
+
+<div th:fragment="products">
+
+    <!-- Products -->
+    <section class="container">
+        <table class="table align-middle mb-0 bg-white">
+            <a class="btn btn-primary mt-4" th:href="@{/productos/create}">Agregar Producto</a>
+            <thead class="bg-light">
+            <tr>
+                <th>Id</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th class="text-center">Inventario</th>
+                <th class="text-center">Precio</th>
+                <th class="text-center">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="producto:${productos}">
+
+                <td th:text="${producto.id}"></td>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img
+                                th:src="@{/images/{img} (img=${producto.imagen})}"
+                                alt=""
+                                style="width: 45px; height: 45px"
+                                class="rounded-circle"
+                        />
+                    </div>
+
+                </td>
+                <td th:text="${producto.nombre}">
+                    <div class="d-flex align-items-center">
+                        <img
+                                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                alt=""
+                                style="width: 45px; height: 45px"
+                                class="rounded-circle"
+                        />
+                    </div>
+                </td>
+                <td th:text="${producto.descripcion}"></td>
+                <td th:text="${producto.cantidad}" class="text-center"></td>
+                <td th:text="${producto.precio}" class="text-center">$</td>
+
+                <td class="justify-content-around">
+                    <a class="btn btn-secondary btn-rounded" th:href="@{productos/edit/__${producto.id}__}"><i class="fa-solid fa-pen"></i></a>
+                    <a class="btn btn-secondary btn-rounded" th:href="@{productos/delete/__${producto.id}__}"><i class="fa-solid fa-trash"></i></i></a>
+                </td>
+
+            </tr>
+
+
+            </tbody>
+        </table>
+    </section>
+    <!-- Products -->
+</div>
+
+
+<div th:include="usuario/template_user.html::footer"></div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

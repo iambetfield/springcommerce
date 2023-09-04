@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <script src="https://kit.fontawesome.com/035dcaec22.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+
+<div>
+    <!--Main Navigation-->
+    <div th:include="usuario/template_user.html::header" th:if="${sesion==null}"></div>
+    <div th:include="usuario/template_user.html::header-user" th:unless="${sesion==null}"></div>
+
+    <!-- Products -->
+    <div class="container">
+        <section>
+            <div class="container my-4">
+                <header class="mb-3">
+                    <h3>Productos</h3>
+                </header>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 d-flex" th:each="producto: ${productos}">
+                        <div class="card w-100 my-2 shadow-2-strong">
+                            <img th:src="@{/images/{img} (img=${producto.imagen})}" alt="" class="card-img-top p-2 rounded" style="aspect-ratio: 1 / 1" />
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title" th:text="${producto.nombre}"></h5>
+                                <p class="card-text" th:text="${producto.precio}">$</p>
+                                <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+                                    <a th:href="@{/producto/__${producto.id}__}" class="btn btn-primary shadow-0 me-1">Ver Producto</a>
+                                    <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg text-secondary px-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Products -->
+    </div>
+    <!-- Products -->
+
+    <!-- Feature -->
+    <section class="">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-6">
+                    <div class="card-banner bg-gray h-100" style="
+                                                      min-height: 200px;
+                                                      background-size: cover;
+                                                      background-position: center;
+                                                      width: 100%;
+                                                      background-repeat: no-repeat;
+                                                      top: 50%;
+                                                      background-image: url('https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/banners/banner-item2.webp');">
+                        <div class="p-3 p-lg-5" style="max-width: 70%;">
+                            <h3 class="text-dark">Best products & brands in our store at 80% off</h3>
+                            <p>That's true but not always</p>
+                            <button class="btn btn-warning shadow-0" href="#"> Claim offer </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row mb-3 mb-sm-4 g-3 g-sm-4">
+                        <div class="col-6 d-flex">
+                            <div class="card w-100 bg-primary" style="min-height: 200px;">
+                                <div class="card-body">
+                                    <h5 class="text-white">Gaming toolset</h5>
+                                    <p class="text-white-50">Technology for cyber sport</p>
+                                    <a class="btn btn-outline-light btn-sm" href="#">Learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 d-flex">
+                            <div class="card w-100 bg-primary" style="min-height: 200px;">
+                                <div class="card-body">
+                                    <h5 class="text-white">Quality sound</h5>
+                                    <p class="text-white-50">All you need for music</p>
+                                    <a class="btn btn-outline-light btn-sm" href="#">Learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- row.// -->
+
+                    <div class="card bg-success" style="min-height: 200px;">
+                        <div class="card-body">
+                            <h5 class="text-white">Buy 2 items, With special gift</h5>
+                            <p class="text-white-50" style="max-width: 400px;">Buy one, get one free marketing strategy helps your business improves the brand by sharing the profits</p>
+                            <a class="btn btn-outline-light btn-sm" href="#">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- col.// -->
+            </div>
+            <!-- row.// -->
+        </div>
+        <!-- container end.// -->
+    </section>
+    <!-- Feature -->
+
+    <!-- Recently viewed -->
+    <section class="mt-5 mb-4">
+        <div class="container text-dark">
+            <header class="">
+                <h3 class="section-title">Recently viewed</h3>
+            </header>
+
+            <div class="row gy-3">
+                <div class="col-lg-2 col-md-4 col-4">
+                    <a href="#" class="img-wrap">
+                        <img height="200" width="200" class="img-thumbnail" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/1.webp" />
+                    </a>
+                </div>
+                <!-- col.// -->
+                <div class="col-lg-2 col-md-4 col-4">
+                    <a href="#" class="img-wrap">
+                        <img height="200" width="200" class="img-thumbnail" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/2.webp" />
+                    </a>
+                </div>
+                <!-- col.// -->
+                <div class="col-lg-2 col-md-4 col-4">
+                    <a href="#" class="img-wrap">
+                        <img height="200" width="200" class="img-thumbnail" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/3.webp" />
+                    </a>
+                </div>
+                <!-- col.// -->
+                <div class="col-lg-2 col-md-4 col-4">
+                    <a href="#" class="img-wrap">
+                        <img height="200" width="200" class="img-thumbnail" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/4.webp" />
+                    </a>
+                </div>
+                <!-- col.// -->
+                <div class="col-lg-2 col-md-4 col-4">
+                    <a href="#" class="img-wrap">
+                        <img height="200" width="200" class="img-thumbnail" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/5.webp" />
+                    </a>
+                </div>
+                <!-- col.// -->
+                <div class="col-lg-2 col-md-4 col-4">
+                    <a href="#" class="img-wrap">
+                        <img height="200" width="200" class="img-thumbnail" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/6.webp" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Recently viewed -->
+
+    <section>
+        <div class="container">
+            <div class="px-4 pt-3 border">
+                <div class="row pt-1">
+                    <div class="col-lg-3 col-md-6 mb-3 d-flex">
+                        <div class="d-flex align-items-center">
+                            <div class="badge badge-warning p-2 rounded-4 me-3">
+                                <i class="fas fa-thumbs-up fa-2x fa-fw"></i>
+                            </div>
+                            <span class="info">
+              <h6 class="title">Reasonable prices</h6>
+              <p class="mb-0">Have you ever finally just</p>
+            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-3 d-flex">
+                        <div class="d-flex align-items-center">
+                            <div class="badge badge-warning p-2 rounded-4 me-3">
+                                <i class="fas fa-plane fa-2x fa-fw"></i>
+                            </div>
+                            <span class="info">
+              <h6 class="title">Worldwide shipping</h6>
+              <p class="mb-0">Have you ever finally just</p>
+            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-3 d-flex">
+                        <div class="d-flex align-items-center">
+                            <div class="badge badge-warning p-2 rounded-4 me-3">
+                                <i class="fas fa-star fa-2x fa-fw"></i>
+                            </div>
+                            <span class="info">
+              <h6 class="title">Best ratings</h6>
+              <p class="mb-0">Have you ever finally just</p>
+            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-3 d-flex">
+                        <div class="d-flex align-items-center">
+                            <div class="badge badge-warning p-2 rounded-4 me-3">
+                                <i class="fas fa-phone-alt fa-2x fa-fw"></i>
+                            </div>
+                            <span class="info">
+              <h6 class="title">Help center</h6>
+              <p class="mb-0">Have you ever finally just</p>
+            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<div th:include="usuario/template_user.html::footer"></div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

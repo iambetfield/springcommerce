@@ -1,0 +1,59 @@
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <script src="https://kit.fontawesome.com/035dcaec22.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+
+
+    <!--Main Navigation-->
+    <div th:include="usuario/template_user.html::header" th:if="${sesion==null}"></div>
+    <div th:include="usuario/template_user.html::header-user" th:unless="${sesion==null}"></div>
+
+    <div class="container">
+        <!-- Compras -->
+        <section class="container">
+            <table class="table align-middle mb-0 bg-white">
+               <h2>Compras</h2>
+                <thead class="bg-light">
+                <tr>
+                    <th>Nro Orden</th>
+                    <th>Fecha</th>
+                    <th>TOTAL</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="orden:${ordenes}">
+
+                    <td th:text="${orden.numero}"></td>
+
+                    <td th:text="${orden.fechaCreacion}">
+                    </td>
+                    <td th:text="${orden.total}"></td>
+                    <td class="justify-content-around">
+                        <a class="btn btn-secondary btn-rounded" th:href="@{/usuario/detalle/__${orden.id}__}">Ver Detalle</i></a>
+
+                    </td>
+
+                </tr>
+
+
+                </tbody>
+            </table>
+        </section>
+        <!-- Compras -->
+
+    </div>
+        <!-- Products -->
+
+
+    <div th:include="usuario/template_user.html::footer"></div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>

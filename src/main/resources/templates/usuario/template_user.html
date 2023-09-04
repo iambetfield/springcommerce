@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SpringCommerce</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/035dcaec22.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div th:fragment="header">
+    <header>
+        <!-- Jumbotron -->
+        <div class="p-3 text-center bg-subtle border-bottom">
+            <div class="container">
+                <div class="row gy-3">
+                    <!-- Left elements -->
+                    <div class="col-lg-2 col-sm-4 col-4">
+                        <a th:href="@{/}" class="float-start">
+                            <img src="/images/logo.jpg" height="35" alt="logo"/>
+                        </a>
+                    </div>
+                    <!-- Left elements -->
+
+                    <!-- Center elements -->
+                    <div class="order-lg-last col-lg-5 col-sm-8 col-8">
+                        <div class="d-flex float-end">
+                            <a th:href="@{/usuario/login}" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Log in</p> </a>
+                            <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-heart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Wishlist</p> </a>
+                            <a th:href="@{/getcart}" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank"> <i class="fas fa-shopping-cart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">My cart</p> </a>
+                        </div>
+                    </div>
+                    <!-- Center elements -->
+
+                    <!-- Right elements -->
+                    <div class="col-lg-5 col-md-12 col-12">
+                        <form class="input-group float-center" method="POST" th:action="@{/search}">
+                            <div class="form-outline">
+                                <input type="search" id="form1" class="form-control" name="busqueda" />
+
+                            </div>
+                            <button type="submit" class="btn btn-primary shadow-0">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <!-- Right elements -->
+                </div>
+            </div>
+        </div>
+        <!-- Jumbotron -->
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <!-- Container wrapper -->
+            <div class="container justify-content-center justify-content-md-between">
+                <!-- Toggle button -->
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarLeftAlignExample" aria-controls="navbarLeftAlignExample" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarLeftAlignExample">
+                    <!-- Left links -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Hot offers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Gift boxes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Menu item</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Menu name</a>
+                        </li>
+                        <!-- Navbar dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                                Others
+                            </a>
+                            <!-- Dropdown menu -->
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                </li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- Left links -->
+                </div>
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+    </header>
+</div>
+
+<div th:fragment="header-user">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand mt-2 mt-lg-0" th:href="@{/}">
+                    <img
+                            th:src="@{images/logo.jpg}"
+                            height="15"
+                            alt="MDB Logo"
+                            loading="lazy"
+                    />
+                </a>
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Projects</a>
+                    </li>
+                </ul>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+            <!--Search bar -->
+            <div class="container-fluid">
+                <form class="d-flex input-group w-auto th:action=@{/search}" method="post">
+                    <input
+                            type="search"
+                            class="form-control rounded"
+                            placeholder="Search"
+                            aria-label="Search"
+                            aria-describedby="search-addon"
+                    />
+                    <span class="input-group-text border-0" id="search-addon">
+        <i class="fas fa-search"></i>
+      </span>
+                </form>
+            </div>
+            <!--Search bar -->
+            <div class="dropdown">
+                <a class="btn btn-primary dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false" th:text="${sesionName}">
+
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" th:href="@{/getcart}">Carrito</a></li>
+                    <li><a class="dropdown-item" th:href="@{usuario/compras}">Compras</a></li>
+                    <hr/>
+                    <li><a class="dropdown-item" th:href="@{/usuario/cerrar}">Salir</a></li>
+                </ul>
+            </div>
+
+            <!-- Right elements -->
+            <div class="d-flex align-items-center">
+                <!-- Icon -->
+                <a class="text-reset me-3" href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+
+                <!-- Notifications -->
+                <div class="dropdown">
+                    <a
+                            class="text-reset me-3 dropdown-toggle hidden-arrow"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            role="button"
+                            data-mdb-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        <i class="fas fa-bell"></i>
+                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                    </a>
+                    <ul
+                            class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdownMenuLink"
+                    >
+                        <li>
+                            <a class="dropdown-item" href="#">Some news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Another news</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Avatar -->
+                <div class="dropdown">
+                    <a
+                            class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                            href="#"
+                            id="navbarDropdownMenuAvatar"
+                            role="button"
+                            data-mdb-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        <img
+                                src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                                class="rounded-circle"
+                                height="25"
+                                alt="Black and White Portrait of a Man"
+                                loading="lazy"
+                        />
+                    </a>
+                    <ul
+                            class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdownMenuAvatar"
+                    >
+                        <li>
+                            <a class="dropdown-item" href="#">My profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Settings</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+</div>
+
+<div class="container" th:fragment="footer">
+    <!-- Footer -->
+    <footer class="text-center text-lg-start text-muted bg-primary mt-3">
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start pt-4 pb-4">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-12 col-lg-3 col-sm-12 mb-2">
+                        <!-- Content -->
+                        <a href="https://mdbootstrap.com/" target="_blank" class="text-white h2">
+                            MDB
+                        </a>
+                        <p class="mt-1 text-white">
+                            © 2023 Copyright: MDBootstrap.com
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-6 col-sm-4 col-lg-2">
+                        <!-- Links -->
+                        <h6 class="text-uppercase text-white fw-bold mb-2">
+                            Store
+                        </h6>
+                        <ul class="list-unstyled mb-4">
+                            <li><a class="text-white-50" href="#">About us</a></li>
+                            <li><a class="text-white-50" href="#">Find store</a></li>
+                            <li><a class="text-white-50" href="#">Categories</a></li>
+                            <li><a class="text-white-50" href="#">Blogs</a></li>
+                        </ul>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-6 col-sm-4 col-lg-2">
+                        <!-- Links -->
+                        <h6 class="text-uppercase text-white fw-bold mb-2">
+                            Information
+                        </h6>
+                        <ul class="list-unstyled mb-4">
+                            <li><a class="text-white-50" href="#">Help center</a></li>
+                            <li><a class="text-white-50" href="#">Money refund</a></li>
+                            <li><a class="text-white-50" href="#">Shipping info</a></li>
+                            <li><a class="text-white-50" href="#">Refunds</a></li>
+                        </ul>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-6 col-sm-4 col-lg-2">
+                        <!-- Links -->
+                        <h6 class="text-uppercase text-white fw-bold mb-2">
+                            Support
+                        </h6>
+                        <ul class="list-unstyled mb-4">
+                            <li><a class="text-white-50" href="#">Help center</a></li>
+                            <li><a class="text-white-50" href="#">Documents</a></li>
+                            <li><a class="text-white-50" href="#">Account restore</a></li>
+                            <li><a class="text-white-50" href="#">My orders</a></li>
+                        </ul>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-12 col-sm-12 col-lg-3">
+                        <!-- Links -->
+                        <h6 class="text-uppercase text-white fw-bold mb-2">Newsletter</h6>
+                        <p class="text-white">Stay in touch with latest updates about our products and offers</p>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control border" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
+                            <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
+                                Join
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+    </footer>
+    <!-- Footer -->
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
