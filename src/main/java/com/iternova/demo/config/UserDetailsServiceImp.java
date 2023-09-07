@@ -1,6 +1,7 @@
-package com.iternova.demo.service;
+package com.iternova.demo.config;
 
 import com.iternova.demo.model.Usuario;
+import com.iternova.demo.service.UsuarioService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -13,29 +14,33 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserDetailServiceImp implements UserDetailsService {
+public class UserDetailsServiceImp implements UserDetailsService {
+
+    //ver
     @Autowired
     private UsuarioService usuarioService;
-    @Autowired
-    public HttpSession session;
 
+    //ver para encriptar y desencriptar
+    @Autowired
+    private BCryptPasswordEncoder bcrypt;
+    @Autowired
+    HttpSession session;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         Optional<Usuario> optionalUser = usuarioService.findByEmail(username);
-        if(optionalUser.isPresent()){
-            session.setAttribute("idUsuario",optionalUser.get().getId());
-            session.setAttribute("nombre", optionalUser.get().getNombre());
 
+        if(optionalUser.isPresent()){
+            session.setAttribute("idUsuario", optionalUser.get().getId());
             Usuario user = optionalUser.get();
 
-            BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-            return User.builder().
-                    username(user.getNombre()).
-                    password(bcrypt.encode(user.getPassword())).roles(user.getTipo()).build();
-        }else {
-            throw new UsernameNotFoundException("Usuario no encontrado");
+            return User.builder()
+                    .username(user.getNombre())
+                    .password(user.getPassword())
+                    .roles(user.getTipo())
+                    .build();
         }
-
+            else {
+                throw new UsernameNotFoundException("usuario no encontrado");
+        }
     }
 }

@@ -30,7 +30,7 @@ public class UsuarioServiceImp implements UsuarioService{
 
     @Override
     public List<Usuario> findAll() {
-        return usuarioRepository.findAll();
+        return usuarioRepository.findAll() ;
     }
 
 
