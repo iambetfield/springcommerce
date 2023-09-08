@@ -10,7 +10,7 @@
 
 <body>
 <div class="container">
-
+    <p th:if="${param.error}" class="error">Wrong email or password</p>
     <main class="form-signin w-100 m-auto">
         <form th:action="@{/usuario/login}" method="post">
             <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">

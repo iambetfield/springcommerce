@@ -3,6 +3,7 @@ package com.iternova.demo.config;
 import com.iternova.demo.model.Usuario;
 import com.iternova.demo.service.UsuarioService;
 import jakarta.servlet.http.HttpSession;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class UserDetailsServiceImp implements UserDetailsService {
@@ -25,11 +27,15 @@ public class UserDetailsServiceImp implements UserDetailsService {
     private BCryptPasswordEncoder bcrypt;
     @Autowired
     HttpSession session;
+
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Usuario> optionalUser = usuarioService.findByEmail(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        System.out.println("buscando username");
+        Optional<Usuario> optionalUser = usuarioService.findByEmail(email);
 
         if(optionalUser.isPresent()){
+            System.out.println("usuario encontrado");
             session.setAttribute("idUsuario", optionalUser.get().getId());
             Usuario user = optionalUser.get();
 

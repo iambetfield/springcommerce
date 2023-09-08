@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -26,18 +27,17 @@ public class WebSecurityConfig {
 
     }
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(getEncoder());
-
+        System.out.println("usuario validado");
         return authProvider;
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
     }
 
     @Bean
@@ -49,11 +49,11 @@ public class WebSecurityConfig {
                                 .requestMatchers("/usuario/home").permitAll()
                                 .requestMatchers("/**").permitAll()
                 )
-                        .formLogin(log->log
-                                .loginPage("/login").defaultSuccessUrl("/acceder").permitAll()
+                        .formLogin(log->log //ver si va usuario
+                                .loginPage("/usuario/login").defaultSuccessUrl("/usuario/acceder").permitAll()
 
                         )
-                                .logout(out -> out.logoutUrl("/salir").permitAll());
+                                .logout(out -> out.logoutUrl("/cerrar").permitAll());
 
         http.authenticationProvider(authenticationProvider());
 
