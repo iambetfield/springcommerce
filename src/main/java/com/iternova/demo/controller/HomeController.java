@@ -49,7 +49,12 @@ public class HomeController {
         //session
 
         model.addAttribute("sesion", session.getAttribute("idUsuario"));
-        model.addAttribute("sesionName", session.getAttribute("nombre"));
+
+
+        //obtener el nombre de usuario
+        String username= (String) session.getAttribute("username");
+        System.out.println(username);
+        model.addAttribute("username", username);
         return "usuario/home";
     }
 
@@ -65,6 +70,7 @@ public class HomeController {
     }
 
     @PostMapping("/cart")
+    @PreAuthorize("hasRole('USER')")
     public String addCart(@RequestParam Integer id, @RequestParam Integer cantidad, Model model){
         DetalleOrden detalleOrden = new DetalleOrden();
         Producto producto = new Producto();

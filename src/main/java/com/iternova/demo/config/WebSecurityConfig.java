@@ -45,12 +45,12 @@ public class WebSecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/admin/**").hasRole("ADMIN")
-                                .requestMatchers("/usuario/cart").hasRole("USER")
-                                .requestMatchers("/usuario/home").permitAll()
-                                .requestMatchers("/**").permitAll()
+                                .requestMatchers("/", "/producto/**").permitAll()
+                                .requestMatchers("/images/**", "/js/**").permitAll()
+                                .anyRequest().authenticated()
                 )
                         .formLogin(log->log //ver si va usuario
-                                .loginPage("/usuario/login").defaultSuccessUrl("/usuario/acceder").permitAll()
+                                .loginPage("/usuario/login").defaultSuccessUrl("/", true).permitAll()
 
                         )
                                 .logout(out -> out.logoutUrl("/cerrar").permitAll());

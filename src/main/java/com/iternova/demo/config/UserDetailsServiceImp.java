@@ -37,6 +37,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
         if(optionalUser.isPresent()){
             System.out.println("usuario encontrado");
             session.setAttribute("idUsuario", optionalUser.get().getId());
+            session.setAttribute("username", optionalUser.get().getNombre());
             Usuario user = optionalUser.get();
 
             return User.builder()

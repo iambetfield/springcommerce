@@ -47,12 +47,13 @@ public class UsuarioController {
         return "usuario/login";
     }
     @GetMapping("/acceder")
-    public String acceder(Usuario usuario, HttpSession session){
+    public String acceder(Usuario usuario, HttpSession session, Model model){
 
         Optional<Usuario> user = usuarioService.findById(Integer.parseInt(session.getAttribute("idUsuario").toString()));
 
         if(user.isPresent()){
-            session.setAttribute("idUsuario", user.get().getId());
+
+            model.addAttribute("usuario", user);
             if(user.get().getTipo().equals("ADMIN")){
                 return "redirect:/admin";
             } else {
@@ -62,7 +63,7 @@ public class UsuarioController {
             System.out.println("el usuario no existe");
         }
 
-        return "redirect:/";
+        return "redirect:/usuario/login";
     }
 
     @GetMapping("/compras")

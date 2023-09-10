@@ -8,6 +8,7 @@ import com.iternova.demo.service.OrdenService;
 import com.iternova.demo.service.ProductoService;
 import com.iternova.demo.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ public class AdminController {
     private OrdenService ordenService;
 
     @GetMapping("")
+    @PreAuthorize("hasRole('ADMIN')")
     public String home(Model model){
         List<Producto> productos = productoService.findAll();
         model.addAttribute("productos", productos);
