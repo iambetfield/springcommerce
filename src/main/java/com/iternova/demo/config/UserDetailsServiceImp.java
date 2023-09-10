@@ -35,9 +35,10 @@ public class UserDetailsServiceImp implements UserDetailsService {
         Optional<Usuario> optionalUser = usuarioService.findByEmail(email);
 
         if(optionalUser.isPresent()){
-            System.out.println("usuario encontrado");
+            System.out.println("usuario encontrado en UserDetailsService");
             session.setAttribute("idUsuario", optionalUser.get().getId());
             session.setAttribute("username", optionalUser.get().getNombre());
+            session.setAttribute("rol", optionalUser.get().getTipo());
             Usuario user = optionalUser.get();
 
             return User.builder()

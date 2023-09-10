@@ -44,13 +44,13 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/admin/**").hasRole("ADMIN")
+                        auth.requestMatchers("/admin/**", "productos/**").hasRole("ADMIN")
                                 .requestMatchers("/", "/producto/**").permitAll()
                                 .requestMatchers("/images/**", "/js/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                         .formLogin(log->log //ver si va usuario
-                                .loginPage("/usuario/login").defaultSuccessUrl("/", true).permitAll()
+                                .loginPage("/usuario/login").defaultSuccessUrl("/usuario/acceder", true).permitAll()
 
                         )
                                 .logout(out -> out.logoutUrl("/cerrar").permitAll());

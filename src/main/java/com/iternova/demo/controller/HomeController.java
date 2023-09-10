@@ -53,7 +53,7 @@ public class HomeController {
 
         //obtener el nombre de usuario
         String username= (String) session.getAttribute("username");
-        System.out.println(username);
+        System.out.println(username + "ya en el home");
         model.addAttribute("username", username);
         return "usuario/home";
     }

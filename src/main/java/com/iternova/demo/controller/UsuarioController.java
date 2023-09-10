@@ -50,11 +50,12 @@ public class UsuarioController {
     public String acceder(Usuario usuario, HttpSession session, Model model){
 
         Optional<Usuario> user = usuarioService.findById(Integer.parseInt(session.getAttribute("idUsuario").toString()));
-
+        System.out.println(user.get().getNombre());
         if(user.isPresent()){
 
             model.addAttribute("usuario", user);
             if(user.get().getTipo().equals("ADMIN")){
+                System.out.println("el usuario es ADMIN");
                 return "redirect:/admin";
             } else {
                 return "redirect:/";
