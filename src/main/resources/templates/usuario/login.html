@@ -9,25 +9,24 @@
 </head>
 
 <body>
-<div class="container">
-    <p th:if="${param.error}" class="error">Wrong email or password</p>
-    <main class="form-signin w-100 m-auto">
+
+<div class="container col-4 mt-5">
+
+    <main class="form-signin w-40 m-auto">
+
         <form th:action="@{/usuario/login}" method="post">
-            <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-            <div class="form-floating">
+            <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="username" placeholder="name@example.com" name="username">
-                <label >Email address</label>
+                <label class="text-secondary">Email address</label>
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="password" placeholder="Password" name="password">
-                <label >Password</label>
+                <label class="text-secondary" >Password</label>
             </div>
-            <div><hr class="dropdown-divider">
-                <p>Don't have an account?</p>
-                <a th:href="@{/usuario/registro}" class="btn btn-info" type="submit">Register</a>
-            </div>
+
 
             <div class="form-check text-start my-3">
                 <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
@@ -35,11 +34,19 @@
                     Remember me
                 </label>
             </div>
+            <div class="text-center">
+                <p th:if="${param.error}" class="text-danger">Wrong email or password</p>
+            </div>
             <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
+
         </form>
+        <div>
+            <hr/>
+            <p class="me-3 mt-3">Don't have an account?  <a th:href="@{/usuario/registro}" class="link-opacity-75 link-underline-opacity-0" type="submit">Register</a></p>
+
+        </div>
     </main>
-    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
 
 
 

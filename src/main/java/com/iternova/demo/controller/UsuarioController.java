@@ -20,6 +20,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
+
     @Autowired
     private UsuarioService usuarioService;
 
@@ -35,6 +36,8 @@ public class UsuarioController {
 
     @PostMapping("/save")
     public String save(Usuario usuario){
+
+        System.out.println("entro en save");
 
         usuario.setTipo("USER");
         usuario.setPassword(passEncode.encode(usuario.getPassword()));
